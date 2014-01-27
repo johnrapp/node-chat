@@ -1,0 +1,114 @@
+body {
+	font-family: "Open Sans", sans-serif;
+	margin: 0px;
+}
+.hf {
+	background-color: #c03;
+	color: white;
+	text-align: center;
+	padding: 10px;
+}
+header {
+	font-size: 3em;
+}
+footer {
+	font-size: 1.5em;
+	clear: both;
+}
+form {
+	margin: 0px;
+}
+aside {
+	width: 175px;
+	padding: 10px;
+	background-color: #e8e8e8;
+	margin-left: 5px;
+	text-align: center;
+	float: left;
+}
+#nickname {
+	padding: 5px;
+	border: 1px solid lightgray;
+	text-align: center;
+	outline: none;
+	display: inline;
+}
+#random {
+	background-color: #ccc;
+	padding: 5px;
+	outline: none;
+	border: 0;
+	cursor: pointer;
+}
+#container {
+	width: 800px;
+	margin: auto;
+}
+#chat-container {
+	width: 600px;
+	float: left;
+}
+#messages {
+	width: calc(100% - 40px);
+	min-height: 400px;
+	padding: 20px;
+	float: left;
+	background-color: #e8e8e8;
+}
+#no-messages {
+	text-align: center;
+	font-weight: bold;
+}
+#new-message {
+	clear: both;
+	border: 1px solid lightgray;
+	padding: 0.25em;
+}
+#write {
+	font-family: inherit;
+	width: 100%;
+	height: auto;
+	resize: none;
+	outline: none;
+	margin: 0px;
+	border: 0;
+	overflow: hidden;
+	rows: 5;
+}
+.message {
+	clear: both;
+	padding: 10px;
+	border-radius: 4px;
+	border: 2px solid gray;
+	max-width: 50%;
+}
+.message + .message {
+	margin-top: 15px;
+}
+.message.other {
+	background-color: limegreen;
+	float: left;
+}
+.message.own {
+	background-color: silver;
+	float: right;
+}
+.author {
+	font-size: 8pt;
+	text-align: right;
+	font-weight: bold;
+	color: silver;
+}
+
+/*
+.message.other:before {
+	background-image: url(res/left-arrow.png);
+	background-repeat: no-repeat;
+	background-size: auto;
+	height: 11px;
+	top: 5px;
+}
+.message.own:after {
+	background-image: url(res/right-arrow.png)
+}
+*/

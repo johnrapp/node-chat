@@ -1,0 +1,45 @@
+<html ng-app="app">
+<head>
+	<title>Chat</title>
+	
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.js"></script>
+	<script type="text/javascript" src="socket.io/socket.io.js"></script>
+	<script type="text/javascript" src="scripts/socket.js"></script>
+	<script type="text/javascript" src="scripts/app.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="fonts.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<header class="hf">Chat service</header>
+	<div id="container">
+		<div id="chat-container">
+			<div id="messages" ng-controller="messagesCtrl">
+			<div class="message" ng-class="{own: message.own, other: !message.own}" ng-repeat="message in messages">
+				<article class="content">{{message.content}}</article>
+				<div class="author" ng-hide="message.own">{{message.author}}</div>
+			</div>
+			<div id="no-messages" ng-show="messages.length <= 0">No messages yet. Write one!</div>
+			<!--
+				<div class="message other">Message 1</div>
+				<div class="message own">OWN 1</div>
+				<div class="message own">OWN 2</div>
+				<div class="message other">Message 1</div>
+				<div class="message own">OWN 2</div>
+				<div class="message other">Message 1</div>
+				<div class="message other">Message 1</div>
+			-->
+			</div>
+			<div id="new-message" ng-controller="newCtrl">
+				<textarea id="write" ng-model="message" ng-keydown="keyDown($event)"></textarea>
+			</div>
+		</div>
+		<aside ng-controller="nicknameCtrl">
+			<div>Nickname</div>
+			<input id="nickname" ng-model="nickname">
+			<button id="random" ng-click="randomName()">Random</button>
+		</aside>
+	</div>
+	<footer class="hf">&copy; John Rapp Farnes</footer>
+</body>
+</html>
