@@ -2,6 +2,7 @@ var app = angular.module('app', ['socket.io'])
 //.constant('alphabet', ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'])
 .constant('vowels', ['a', 'e', 'i', 'o', 'u', 'y'])
 .constant('consonants', ['a', 'b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'z'])
+.constant('rooms', ['Default room', 'Awesome room'])
 
 .constant('messages', [])
 .constant('profile', {})
@@ -14,6 +15,15 @@ var app = angular.module('app', ['socket.io'])
 	}
 })
 
+.controller('channelCtrl', ['$scope', 'messages', 'rooms',
+	function($scope, messages, rooms) {
+		$scope.rooms = rooms;
+		$scope.selected = $scope.rooms[0];
+		$scope.select = function(room) {
+			$scope.selected = room;
+		}
+	}]
+)
 .controller('nicknameCtrl', ['$scope', 'profile', 'consonants', 'vowels',
 	function($scope, profile, consonants, vowels) {
 		$scope.$watch('nickname', function() {
@@ -74,7 +84,7 @@ var app = angular.module('app', ['socket.io'])
 				socket.emit('broadcast message', message);
 				message.own = true;
 				messages.push(message);
-				
+
 				$scope.message = '';
 				e.preventDefault();	
 			} else if($scope.message.length >= MAX_LENGTH && e.keyCode !== 8)

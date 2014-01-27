@@ -31,18 +31,33 @@ aside {
 	width: 175px;
 	padding: 10px;
 	background-color: #e8e8e8;
-	margin-left: 5px;
 	text-align: center;
+}
+.row > * {
 	float: left;
 }
-#profile {
+.row > * + * {
+	margin-left: 5px;
+}
+h1 {
 	background-color: #bbb;
 	color: white;
 }
-#settings > li {
+#settings li {
 	margin-top: 10px;
     background-color: #ccc;
     padding: 5px;
+}
+#rooms {
+	text-align: left;
+	margin-top: 10px;
+}
+#rooms .selected {
+	font-weight: bold;
+}
+#rooms li {
+	color: #4D70C4;
+	cursor: pointer;
 }
 #nickname {
 	padding: 5px;
@@ -72,19 +87,17 @@ aside {
 	background-color: #eee;
 }
 #colors li {
-	border: 1px solid black;
 	cursor: pointer;
 }
 #colors li + li {
 	margin-top: 5px;
 }
 #container {
-	width: 800px;
+	width: 1000px;
 	margin: auto;
 }
 #chat-container {
 	width: 600px;
-	float: left;
 }
 #messages {
 	width: calc(100% - 40px);
