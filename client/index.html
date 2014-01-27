@@ -22,7 +22,7 @@
 			</aside>-->
 			<div id="chat-container">
 				<div id="messages" ng-controller="messagesCtrl">
-					<div class="message" ng-repeat="message in messages" ng-class="{own: message.own, other: !message.own}">
+					<div class="message" ng-repeat="message in messages" ng-class="{own: message.own}">
 						<article class="content" ng-style="message.sender.style">{{message.content}}</article>
 						<div class="sender" ng-hide="message.own">{{message.sender.nickname || 'anonymous'}}</div>
 					</div>

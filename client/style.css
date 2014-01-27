@@ -134,8 +134,6 @@ h1 {
 }
 .message + .message {
 	margin-top: 15px;
-}
-.message.other {
 	float: left;
 }
 .message.own {
