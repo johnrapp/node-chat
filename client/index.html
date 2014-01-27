@@ -14,12 +14,12 @@
 	<header class="hf">Chat service</header>
 	<div id="container">
 		<div class="row">
-			<aside ng-controller="channelCtrl">
+			<!--<aside ng-controller="rooomCtrl">
 				<h1>Rooms</h1>
 				<ul class="vanilla" id="rooms">
 					<li ng-repeat="room in rooms" ng-click="select(room)" ng-class="{selected: room == selected}">{{room}}</li>
 				</ul>
-			</aside>
+			</aside>-->
 			<div id="chat-container">
 				<div id="messages" ng-controller="messagesCtrl">
 					<div class="message" ng-repeat="message in messages" ng-class="{own: message.own, other: !message.own}">

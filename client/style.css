@@ -24,9 +24,6 @@ footer {
 	font-size: 1.5em;
 	clear: both;
 }
-form {
-	margin: 0px;
-}
 aside {
 	width: 175px;
 	padding: 10px;
@@ -93,7 +90,8 @@ h1 {
 	margin-top: 5px;
 }
 #container {
-	width: 1000px;
+	/*1000 full width*/
+	width: 800px;
 	margin: auto;
 }
 #chat-container {

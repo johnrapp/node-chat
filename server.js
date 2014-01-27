@@ -23,16 +23,16 @@ function getRooms(socket) {
 }
 
 io.sockets.on('connection', function (socket) {
-	socket.join('Default room');
+	//socket.join('Default room');
 	socket.on('broadcast message', function(message) {
 		socket.broadcast.to(getRooms(socket)[0]).emit('new message', message);
 	});
 
-	socket.on('select room', function(room) {
+	/*socket.on('select room', function(room) {
 		var rooms = getRooms(socket);
 		for(var room in rooms) {
 			socket.leave(rooms[room]);
 		}
 		socket.join(room);
-	});
+	});*/
 });

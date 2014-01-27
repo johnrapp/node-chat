@@ -15,7 +15,7 @@ var app = angular.module('app', ['socket.io'])
 	}
 })
 
-.controller('channelCtrl', ['$scope', 'messages', 'rooms', 'socket',
+/*.controller('rooomCtrl', ['$scope', 'messages', 'rooms', 'socket',
 	function($scope, messages, rooms, socket) {
 		$scope.rooms = rooms;
 		$scope.selected = $scope.rooms[0];
@@ -25,7 +25,7 @@ var app = angular.module('app', ['socket.io'])
 			socket.emit('select room', room);
 		}
 	}]
-)
+)*/
 .controller('nicknameCtrl', ['$scope', 'profile', 'consonants', 'vowels',
 	function($scope, profile, consonants, vowels) {
 		$scope.$watch('nickname', function() {
