@@ -1,12 +1,19 @@
 var app = angular.module('app', ['socket.io'])
 .constant('messages', [])
-.constant('nickname', '')
+.factory('nickname', function() {
+	var nickname = '';
+	return function(value) {
+		if(value) nickname = value;
+		else return nickname
+	}
+})
 
 .controller('nicknameCtrl', ['$scope', 'nickname',
 	function($scope, nickname) {
-		$scope.nickname = nickname;
+		$scope.$watch('nickname', function() {
+			nickname($scope.nickname);
+		});
 		$scope.randomName = function() {
-			$scope.nickname = 'lol';
 		}
 	}]
 )
@@ -27,7 +34,7 @@ var app = angular.module('app', ['socket.io'])
 			if(!$scope.message) return false;
 			if(e.keyCode === 13 && !e.shiftKey) {
 				messages.push({content: $scope.message, own: true});
-				socket.emit('broadcast message', {content: $scope.message, author: nickname || 'anonymous'});
+				socket.emit('broadcast message', {content: $scope.message, author: nickname() || 'anonymous'});
 				$scope.message = '';
 				e.preventDefault();	
 			} else if($scope.message.length >= MAX_LENGTH && e.keyCode !== 8)
