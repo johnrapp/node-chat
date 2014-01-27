@@ -3,12 +3,6 @@ var express = require('express')
 	, server = require('http').createServer(app)
 	, io = require('socket.io').listen(server);
 
-var Channel = function(name) {
-	this.name = name;
-	this.clients = [];
-}
-//var channels = {def: new Channel('Default Channel')};
-
 app.use(express.static(__dirname + '/client'));
 
 server.listen(8080);
@@ -24,14 +18,21 @@ app.get('/app.js', function(req, res) {
 });
 
 */
+function getRooms(socket) {
+	return io.sockets.manager.roomClients[socket.id];
+}
 
 io.sockets.on('connection', function (socket) {
-	//channels.def.push(socket);
+	socket.join('Default room');
 	socket.on('broadcast message', function(message) {
-		socket.broadcast.emit('new message', message);
+		socket.broadcast.to(getRooms(socket)[0]).emit('new message', message);
 	});
 
-	socket.on('select channel', function(message) {
-		socket.broadcast.emit('new message', message);
+	socket.on('select room', function(room) {
+		var rooms = getRooms(socket);
+		for(var room in rooms) {
+			socket.leave(rooms[room]);
+		}
+		socket.join(room);
 	});
 });

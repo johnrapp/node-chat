@@ -15,12 +15,14 @@ var app = angular.module('app', ['socket.io'])
 	}
 })
 
-.controller('channelCtrl', ['$scope', 'messages', 'rooms',
-	function($scope, messages, rooms) {
+.controller('channelCtrl', ['$scope', 'messages', 'rooms', 'socket',
+	function($scope, messages, rooms, socket) {
 		$scope.rooms = rooms;
 		$scope.selected = $scope.rooms[0];
 		$scope.select = function(room) {
 			$scope.selected = room;
+			messages = [];
+			socket.emit('select room', room);
 		}
 	}]
 )
@@ -65,8 +67,8 @@ var app = angular.module('app', ['socket.io'])
 		}
 	}]
 )
-.controller('messagesCtrl', ['$scope', 'messages', 'socket',
-	function($scope, messages, socket) {
+.controller('messagesCtrl', ['$scope', 'messages', 'socket', 'rooms',
+	function($scope, messages, socket, rooms) {
 		$scope.messages = messages;
 		socket.on('new message', function(message) {
 			messages.push(message);
