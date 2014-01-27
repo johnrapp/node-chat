@@ -15,29 +15,36 @@
 	<div id="container">
 		<div id="chat-container">
 			<div id="messages" ng-controller="messagesCtrl">
-			<div class="message" ng-class="{own: message.own, other: !message.own}" ng-repeat="message in messages">
-				<article class="content">{{message.content}}</article>
-				<div class="author" ng-hide="message.own">{{message.author}}</div>
-			</div>
-			<div id="no-messages" ng-show="messages.length <= 0">No messages yet. Write one!</div>
-			<!--
-				<div class="message other">Message 1</div>
-				<div class="message own">OWN 1</div>
-				<div class="message own">OWN 2</div>
-				<div class="message other">Message 1</div>
-				<div class="message own">OWN 2</div>
-				<div class="message other">Message 1</div>
-				<div class="message other">Message 1</div>
-			-->
+				<div class="message" ng-repeat="message in messages" ng-class="{own: message.own, other: !message.own}">
+					<article class="content" ng-style="message.sender.style">{{message.content}}</article>
+					<div class="sender" ng-hide="message.own">{{message.sender.nickname || 'anonymous'}}</div>
+				</div>
+				<div id="no-messages" ng-show="messages.length <= 0">No messages yet. Write one!</div>
 			</div>
 			<div id="new-message" ng-controller="newCtrl">
 				<textarea id="write" ng-model="message" ng-keydown="keyDown($event)"></textarea>
 			</div>
 		</div>
-		<aside ng-controller="nicknameCtrl">
-			<div>Nickname</div>
-			<input id="nickname" ng-model="nickname">
-			<button id="random" ng-click="randomName()">Random</button>
+		<aside>
+			<h1 id="profile">Profile</h1>
+			<ul id="settings" class="vanilla">
+				<li ng-controller="nicknameCtrl">
+					<h4>Nickname</h4>
+					<input id="nickname" ng-model="nickname" placeholder="anonymous">
+					<div class="buttons">
+						<button ng-click="random()">Random</button>
+						<button ng-click="clear()">Clear</button>
+					</div>
+				</li>
+				<li ng-controller="colorCtrl">
+					<h4>Color</h4>
+					<div id="color" ng-style="current.style" ng-click="toggle()">{{current.name}}</div>
+					<ul id="colors" class="vanilla" ng-show="expanded">
+						<li ng-repeat="color in colors" ng-style="color.style" ng-click="select(color)">{{color.name}}</div>
+					</div>
+					<div></div>
+				</li>
+			</ul>
 		</aside>
 	</div>
 	<footer class="hf">&copy; John Rapp Farnes</footer>
